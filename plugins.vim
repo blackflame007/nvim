@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'pangloss/vim-javascript'
  Plug 'mxw/vim-jsx'
  Plug 'norcalli/nvim-colorizer.lua'
- Plug 'arcticicestudio/nord-vim'
+ Plug 'morhetz/gruvbox'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 " List ends here. Plugins become visible to Vim after this call.
