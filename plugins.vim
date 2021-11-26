@@ -12,7 +12,13 @@ call plug#begin('~/.vim/plugged')
  Plug 'mxw/vim-jsx'
  Plug 'norcalli/nvim-colorizer.lua'
  Plug 'morhetz/gruvbox'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+" telescope requirements...
+ Plug 'nvim-lua/popup.nvim'
+ Plug 'nvim-lua/plenary.nvim'
+ Plug 'nvim-telescope/telescope.nvim'
+ Plug 'nvim-telescope/telescope-fzy-native.nvim'
+ Plug 'ThePrimeagen/git-worktree.nvim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
