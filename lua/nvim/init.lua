@@ -2,7 +2,7 @@ require("nvim.plugins")
 require("nvim.telescope")
 -- require("nvim.git-worktree")
 -- require("nvim.debugger")
--- require("nvim.lsp")
+require("nvim.lsp")
 
 P = function(v)
   print(vim.inspect(v))

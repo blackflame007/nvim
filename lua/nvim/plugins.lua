@@ -8,11 +8,22 @@ return require('packer').startup(function(use)
   -- My plugins here
   use 'wbthomason/packer.nvim'
   use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+  }
+
+  use {
    'nvim-telescope/telescope.nvim',
    requires = { {'nvim-lua/plenary.nvim'} }
   }
     -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  } 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
