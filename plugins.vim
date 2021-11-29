@@ -14,10 +14,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'morhetz/gruvbox'
 
 " telescope requirements...
- Plug 'nvim-lua/popup.nvim'
- Plug 'nvim-lua/plenary.nvim'
- Plug 'nvim-telescope/telescope.nvim'
- Plug 'nvim-telescope/telescope-fzy-native.nvim'
  Plug 'ThePrimeagen/git-worktree.nvim'
 
 " List ends here. Plugins become visible to Vim after this call.
