@@ -16,3 +16,7 @@ nnoremap <leader>gc :lua require('nvim.telescope').git_branches()<CR>
 nnoremap <leader>gw :lua require('telescope').extensions.git_worktree.git_worktrees()<CR>
 nnoremap <leader>gm :lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>
 nnoremap <leader>td :lua require('nvim.telescope').dev()<CR>
+
+
+nnoremap <leader>/ :lua require('Comment.api').toggle()<CR>
+vnoremap <leader>/ :lua require('Comment.api').gc(vim.fn.visualmode())<CR>, { noremap = true, silent = true })<CR>

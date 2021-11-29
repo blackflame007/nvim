@@ -7,6 +7,11 @@ end
 return require('packer').startup(function(use)
   -- My plugins here
   use 'wbthomason/packer.nvim'
+  use 'glepnir/dashboard-nvim'
+  use {
+  'romgrk/barbar.nvim',
+  requires = {'kyazdani42/nvim-web-devicons'}
+  }
   use {
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
@@ -18,8 +23,10 @@ return require('packer').startup(function(use)
   }
     -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'windwp/nvim-autopairs'
   use {
     'numToStr/Comment.nvim',
+    requires = { {'JoosepAlviste/nvim-ts-context-commentstring'} },
     config = function()
         require('Comment').setup()
     end

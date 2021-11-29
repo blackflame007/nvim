@@ -17,6 +17,7 @@ set undofile
 set incsearch
 set t_Co=256                            " Support 256 colors
 set termguicolors
+set mouse+=a
 colorscheme gruvbox
 "hi Normal guibg=NONE ctermbg=NONE
 set smartindent                         " Makes indenting smart
