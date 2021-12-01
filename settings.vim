@@ -41,6 +41,7 @@ au FocusGained,BufEnter * :silent! !
 set path+=**
 
 " Nice menu when typing `:find *.py`
+set completeopt=menu,menuone,noselect
 set wildmode=longest,list,full
 set wildmenu
 " Ignore files

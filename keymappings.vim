@@ -1,4 +1,6 @@
-lua require("nvim")
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
 
 lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
 

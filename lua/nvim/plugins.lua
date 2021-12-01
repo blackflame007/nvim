@@ -22,6 +22,24 @@ return require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
   }
+  
+  use {
+      'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets',
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/vim-vsnip',
+      'onsails/lspkind-nvim'
+    }
+
+    use 'hrsh7th/nvim-cmp' --completion
+    -- use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+    use 'simrat39/symbols-outline.nvim'
 -- Telescope
   use {
    'nvim-telescope/telescope.nvim',
