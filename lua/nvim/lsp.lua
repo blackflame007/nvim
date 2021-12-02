@@ -1,5 +1,5 @@
-local sumneko_root_path = "/usr/lib/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
+-- local sumneko_root_path = "/usr/lib/lua-language-server"
+-- local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
 
 vim.lsp.set_log_level("debug")
 
@@ -96,22 +96,77 @@ local function config(_config)
 	}, _config or {})
 end
 
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+
 local lsp_installer = require("nvim-lsp-installer")
 
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
+local function make_server_ready()
 lsp_installer.on_server_ready(function(server)
     local opts = config()
 
     -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")
-    -- end
+    if server.name == "sumneko_lua" then
+        opts.settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  }
+    end
 
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     server:setup(opts)
 end)
+end
+---------------------------------------------------
 
 
--- require("lspconfig").tsserver.setup(config())
+---------------------------------------------------
+local function install_server(server)
+  local lsp_installer_servers = require'nvim-lsp-installer.servers'
+  local ok, server_analyzer = lsp_installer_servers.get_server(server)
+  if ok then
+    if not server_analyzer:is_installed() then
+      server_analyzer:install(server) 
+    end
+  end
+end
+---------------------------------------------------
+
+
+---------------------------------------------------
+local servers = {
+'bashls', 'dockerls', 'eslint', 'sumneko_lua', 'gopls', 'pyright', 'rust_analyzer', 'terraformls', 'vimls', 'yamlls', 'ansiblels', 'cssls', 'dotls'
+, 'jsonls', 'hls', 'pylsp', 'cmake', 'graphql', 'tflint', 'tsserver'            -- for json
+}
+
+
+-- setup the LS
+make_server_ready()    -- LSP mappings
+
+-- install the LS
+for _, server in ipairs(servers) do
+  install_server(server)
+end
