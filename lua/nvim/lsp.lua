@@ -1,6 +1,7 @@
 -- local sumneko_root_path = "/usr/lib/lua-language-server"
 -- local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
 vim.lsp.set_log_level("debug")
+local util = require"lspconfig".util
 
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
@@ -129,8 +130,18 @@ local function make_server_ready()
                 }
             }
         end
-        -- This setup() function is exactly the same as lspconfig's setup function.
-        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
+    --     if server.name == "hls" then
+    --         opts = {
+    --             cmd = {"haskell-language-server-wrapper", "--lsp"},
+    --             filetypes = {"haskell", "lhaskell"},
+    --             root_dir = util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml",
+    --                                          "hie.yaml"),
+    --             settings = {haskell = {formattingProvider = "ormolu"}}
+    --         }
+    --     end
+    --     -- This setup() function is exactly the same as lspconfig's setup function.
+    --     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         server:setup(opts)
     end)
 end
