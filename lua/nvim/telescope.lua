@@ -15,50 +15,36 @@ require("telescope").setup({
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
-        mappings = {
-            i = {
-                ["<C-x>"] = false,
-                ["<C-q>"] = actions.send_to_qflist,
-            },
-        },
+        mappings = {i = {["<C-x>"] = false, ["<C-q>"] = actions.send_to_qflist}}
     },
-    extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-        },
-    },
+    extensions = {fzy_native = {override_generic_sorter = false, override_file_sorter = true}}
 })
 
 require("telescope").load_extension("git_worktree")
 require('telescope').load_extension('fzf')
 
 local M = {}
-M.search_dotfiles = function()
+
+M.search_vimfiles = function()
     require("telescope.builtin").find_files({
         prompt_title = "< VimRC >",
-        cwd = vim.env.DOTFILES,
-        hidden = true,
+        cwd = "$DOTFILES/nvim/.config/nvim",
+        hidden = true
     })
+end
+M.search_dotfiles = function()
+    require("telescope.builtin").find_files({prompt_title = "< dot Files >", cwd = "$DOTFILES", hidden = true})
 end
 
 local function set_background(content)
-    vim.fn.system(
-        "dconf write /org/mate/desktop/background/picture-filename \"'"
-            .. content
-            .. "'\""
-    )
+    vim.fn.system("dconf write /org/mate/desktop/background/picture-filename \"'" .. content .. "'\"")
 end
 
 local function select_background(prompt_bufnr, map)
     local function set_the_background(close)
-        local content = require("telescope.actions.state").get_selected_entry(
-            prompt_bufnr
-        )
+        local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
         set_background(content.cwd .. "/" .. content.value)
-        if close then
-            require("telescope.actions").close(prompt_bufnr)
-        end
+        if close then require("telescope.actions").close(prompt_bufnr) end
     end
 
     map("i", "<C-p>", function()
@@ -82,7 +68,7 @@ local function image_selector(prompt, cwd)
                 -- Please continue mapping (attaching additional key maps):
                 -- Ctrl+n/p to move up and down the list.
                 return true
-            end,
+            end
         })
     end
 end
@@ -90,9 +76,7 @@ end
 M.anime_selector = image_selector("< Anime Bobs > ", "~/personal/anime")
 
 local function refactor(prompt_bufnr)
-    local content = require("telescope.actions.state").get_selected_entry(
-        prompt_bufnr
-    )
+    local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
     require("telescope.actions").close(prompt_bufnr)
     require("refactoring").refactor(content.value)
 end
@@ -100,15 +84,13 @@ end
 M.refactors = function()
     require("telescope.pickers").new({}, {
         prompt_title = "refactors",
-        finder = require("telescope.finders").new_table({
-            results = require("refactoring").get_refactors(),
-        }),
+        finder = require("telescope.finders").new_table({results = require("refactoring").get_refactors()}),
         sorter = require("telescope.config").values.generic_sorter({}),
         attach_mappings = function(_, map)
             map("i", "<CR>", refactor)
             map("n", "<CR>", refactor)
             return true
-        end,
+        end
     }):find()
 end
 
@@ -118,7 +100,7 @@ M.git_branches = function()
             map("i", "<c-d>", actions.git_delete_branch)
             map("n", "<c-d>", actions.git_delete_branch)
             return true
-        end,
+        end
     })
 end
 
@@ -128,17 +110,12 @@ M.dev = function(opts)
     opts.cwd = opts.cwd or vim.loop.fs_realpath(vim.loop.cwd())
     print("HEY BAE", opts.cwd)
 
-    local possible_files = vim.api.nvim_get_runtime_file(
-        "/lua/**/dev.lua",
-        true
-    )
+    local possible_files = vim.api.nvim_get_runtime_file("/lua/**/dev.lua", true)
     local local_files = {}
     for _, raw_f in ipairs(possible_files) do
         local real_f = vim.loop.fs_realpath(raw_f)
 
-        if string.find(real_f, opts.cwd, 1, true) then
-            table.insert(local_files, real_f)
-        end
+        if string.find(real_f, opts.cwd, 1, true) then table.insert(local_files, real_f) end
     end
 
     local dev = local_files[1]
@@ -155,10 +132,7 @@ M.dev = function(opts)
     local objs = {}
     for k, v in pairs(mod) do
         local debug_info = debug.getinfo(v)
-        table.insert(objs, {
-            filename = string.sub(debug_info.source, 2),
-            text = k,
-        })
+        table.insert(objs, {filename = string.sub(debug_info.source, 2), text = k})
     end
 
     local mod_name = vim.split(dev, "/lua/")
@@ -180,9 +154,9 @@ M.dev = function(opts)
                     text = entry.text,
                     display = entry.text,
                     ordinal = entry.text,
-                    filename = entry.filename,
+                    filename = entry.filename
                 }
-            end,
+            end
         }),
         sorter = conf.generic_sorter(opts),
         previewer = previewers.builtin.new(opts),
@@ -201,25 +175,15 @@ M.dev = function(opts)
 
                 vim.schedule(function()
                     -- vim.cmd(string.format([[normal!]], entry.value.text))
-                    vim.api.nvim_feedkeys(
-                        vim.api.nvim_replace_termcodes(
-                            string.format(
-                                "<esc>:lua require('%s').%s()",
-                                mod_name,
-                                entry.value.text
-                            ),
-                            true,
-                            false,
-                            true
-                        ),
-                        "n",
-                        true
-                    )
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(string.format(
+                                                                             "<esc>:lua require('%s').%s()",
+                                                                             mod_name, entry.value.text),
+                                                                         true, false, true), "n", true)
                 end)
             end)
 
             return true
-        end,
+        end
     }):find()
 end
 

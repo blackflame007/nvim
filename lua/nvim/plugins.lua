@@ -16,7 +16,15 @@ return require('packer').startup(function(use)
     -- Status Line and Bufferline
     use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}}
     use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
-    use {'scrooloose/nerdtree', requires = {'ryanoasis/vim-devicons', 'Xuyuanp/nerdtree-git-plugin'}}
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons' -- optional, for file icon
+        },
+        config = function()
+            require'nvim-tree'.setup {}
+        end
+    }
     -- lsp
     use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
 
@@ -37,6 +45,12 @@ return require('packer').startup(function(use)
     use 'ThePrimeagen/git-worktree.nvim'
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'nvim-treesitter/playground'
+    -- gitsigns
+
+    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+
+    -- Comments
     use {
         'numToStr/Comment.nvim',
         requires = {{'JoosepAlviste/nvim-ts-context-commentstring'}},
@@ -44,6 +58,15 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+
+    -- which-key
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {}
+        end
+    }
+
     -- Autopairs
     use 'windwp/nvim-autopairs'
     use 'tpope/vim-sleuth'
