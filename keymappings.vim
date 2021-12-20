@@ -24,3 +24,12 @@ nnoremap <leader>td :lua require('nvim.telescope').dev()<CR>
 " Comments
 nnoremap <leader>/ :lua require('Comment.api').toggle()<CR>
 vnoremap <leader>/ :lua require('Comment.api').gc(vim.fn.visualmode())<CR>, { noremap = true, silent = true })<CR>
+
+" Buffers
+noremap <C-w> :bd!<Cr>
+
+" Explorer
+nnoremap <C-e> :NERDTreeToggle<CR>
+
+" Terminal
+tnoremap <Esc> <C-\><C-n>

@@ -10,9 +10,13 @@ return require('packer').startup(function(use)
     -- My plugins here
     use 'wbthomason/packer.nvim'
     use 'glepnir/dashboard-nvim'
+
+    -- theme
+    use 'morhetz/gruvbox'
     -- Status Line and Bufferline
     use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}}
     use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
+    use {'scrooloose/nerdtree', requires = {'ryanoasis/vim-devicons', 'Xuyuanp/nerdtree-git-plugin'}}
     -- lsp
     use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
 
@@ -25,9 +29,12 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-cmp' -- completion
     use {'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp'}
     use 'simrat39/symbols-outline.nvim'
+
+    use 'prettier/vim-prettier'
     -- Telescope
     use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}}}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use 'ThePrimeagen/git-worktree.nvim'
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use {

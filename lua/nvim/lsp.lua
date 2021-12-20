@@ -131,17 +131,20 @@ local function make_server_ready()
             }
         end
 
-    --     if server.name == "hls" then
-    --         opts = {
-    --             cmd = {"haskell-language-server-wrapper", "--lsp"},
-    --             filetypes = {"haskell", "lhaskell"},
-    --             root_dir = util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml",
-    --                                          "hie.yaml"),
-    --             settings = {haskell = {formattingProvider = "ormolu"}}
-    --         }
-    --     end
-    --     -- This setup() function is exactly the same as lspconfig's setup function.
-    --     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+        -- if server.name == "tsserver" then
+        --     opts.filetypes = {"typescript", "typescriptreact", "typescript.tsx"}
+        -- end
+        --     if server.name == "hls" then
+        --         opts = {
+        --             cmd = {"haskell-language-server-wrapper", "--lsp"},
+        --             filetypes = {"haskell", "lhaskell"},
+        --             root_dir = util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml",
+        --                                          "hie.yaml"),
+        --             settings = {haskell = {formattingProvider = "ormolu"}}
+        --         }
+        --     end
+        --     -- This setup() function is exactly the same as lspconfig's setup function.
+        --     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         server:setup(opts)
     end)
 end
@@ -168,3 +171,6 @@ make_server_ready() -- LSP mappings
 -- install the LS
 
 for _, server in ipairs(servers) do install_server(server) end
+
+require("luasnip.loaders.from_vscode").lazy_load()
+
