@@ -1,12 +1,24 @@
+-- Install packer
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({
+    _G.packer_bootstrap = fn.system({
         'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path
     })
 end
 
-return require('packer').startup(function(use)
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+]]
+
+-- Use a protected call so we don't error out on the first use
+local ok_status, packer = pcall(require, 'packer')
+if not ok_status then return end
+
+return packer.startup(function(use)
     -- My plugins here
     use 'wbthomason/packer.nvim'
     use 'glepnir/dashboard-nvim'
@@ -33,11 +45,12 @@ return require('packer').startup(function(use)
         'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-cmdline', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind-nvim'
     }
-
+    use 'jose-elias-alvarez/null-ls.nvim'
     use 'hrsh7th/nvim-cmp' -- completion
     use {'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp'}
     use 'simrat39/symbols-outline.nvim'
 
+    use 'sbdchd/neoformat'
     use 'prettier/vim-prettier'
     -- Telescope
     use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}}}
