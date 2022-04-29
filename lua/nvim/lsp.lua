@@ -13,7 +13,7 @@ local source_mapping = {
     path = "[Path]"
 }
 local lspkind = require("lspkind")
-require('lspkind').init({with_text = true})
+require('lspkind').init({mode = 'symbol_text',})
 
 cmp.setup({
     snippet = {
@@ -48,7 +48,7 @@ cmp.setup({
         end
     },
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, -- { name = 'vsnip' }, -- For vsnip users.
+        -- {name = 'nvim_lsp'}, -- { name = 'vsnip' }, -- For vsnip users.
         {name = 'luasnip'} -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
@@ -173,5 +173,5 @@ make_server_ready() -- LSP mappings
 
 for _, server in ipairs(servers) do install_server(server) end
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
+require("luasnip/loaders/from_vscode").load()
+require("luasnip/loaders/from_vscode").lazy_load()

@@ -43,7 +43,7 @@ return packer.startup(function(use)
     use {
         'L3MON4D3/LuaSnip', 'rafamadriz/friendly-snippets', 'hrsh7th/cmp-nvim-lsp',
         'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lua',
-        'hrsh7th/cmp-cmdline', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip', 'onsails/lspkind-nvim'
+        'hrsh7th/cmp-cmdline', 'hrsh7th/cmp-vsnip', 'onsails/lspkind-nvim'
     }
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'hrsh7th/nvim-cmp' -- completion
