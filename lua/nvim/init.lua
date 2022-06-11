@@ -1,5 +1,6 @@
 require("nvim.plugins")
 require("nvim.telescope")
+require("nvim.dashboard")
 require'lualine'.setup()
 require("nvim.comment")
 -- require("nvim.git-worktree")
