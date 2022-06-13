@@ -27,12 +27,3 @@ nnoremap <leader>gm :lua require('telescope').extensions.git_worktree.create_git
 " Comments
 nnoremap <leader>/ :lua require('Comment.api').call("toggle_current_linewise_op")<CR>g@$
 vnoremap <leader>/ :lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>
-
-" Buffers
-noremap <leader>w :bd!<Cr>
-
-" Explorer
-nnoremap <C-e> :NvimTreeToggle<CR>
-
-" Terminal
-tnoremap <Esc> <C-\><C-n>

@@ -1,26 +1,29 @@
 require("nvim.plugins")
+require("nvim.keymaps")
+require("nvim.options")
+require("nvim.treesitter")
+require("nvim.autopairs")
+require("nvim.lsp")
 require("nvim.telescope")
+require("nvim.autocommands")
+require("nvim.impatient")
+require("nvim.indentline")
+require("nvim.whichkey")
 require("nvim.dashboard")
-require'lualine'.setup()
+require("nvim.nvim-tree")
+require("nvim.lualine")
+require("nvim.toggleterm")
+require("nvim.project")
 require("nvim.comment")
+require("nvim.bookmark")
+require("nvim.surround")
+require("nvim.notify")
+require("nvim.ts-context")
+require("nvim.registers")
+require("nvim.lir")
+require("nvim.jabs")
 -- require("nvim.git-worktree")
 -- require("nvim.debugger")
-require("nvim.treesitter")
-require("nvim.lsp")
 require('nvim-autopairs').setup {}
 require("nvim.gitsigns")
-
-P = function(v)
-    print(vim.inspect(v))
-    return v
-end
-
-if pcall(require, 'plenary') then
-    RELOAD = require('plenary.reload').reload_module
-
-    R = function(name)
-        RELOAD(name)
-        return require(name)
-    end
-end
 
