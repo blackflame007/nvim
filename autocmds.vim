@@ -6,3 +6,6 @@ autocmd! BufRead,BufNewFile *.{jsx,jx,js} setlocal filetype=javascript.jsx
 autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
 " lua
 autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()
+
+" go
+autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()

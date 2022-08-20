@@ -26,6 +26,7 @@ require("nvim.registers")
 require("nvim.dap")
 require("nvim.lir")
 require("nvim.jabs")
+require("nvim.go")
 -- require("nvim.git-worktree")
 -- require("nvim.debugger")
 

@@ -133,6 +133,8 @@ return packer.startup(function(use)
 
     use 'sbdchd/neoformat'
     use 'prettier/vim-prettier'
+    use 'ray-x/go.nvim'
+    use 'ray-x/guihua.lua' -- recommanded if need floating window support
     -- Telescope
     use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'}}}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
