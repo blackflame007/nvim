@@ -25,5 +25,5 @@ nnoremap <leader>gw :lua require('telescope').extensions.git_worktree.git_worktr
 nnoremap <leader>gm :lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>
 
 " Comments
-nnoremap <leader>/ :lua require('Comment.api').call("toggle_current_linewise_op")<CR>g@$
-vnoremap <leader>/ :lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>
+nnoremap <leader>/ :lua require('Comment.api').toggle.linewise.current()<CR>g@$
+vnoremap <leader>/ :lua require('Comment.api').toggle_linewise(vim.fn.visualmode())<CR>
