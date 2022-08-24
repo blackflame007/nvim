@@ -74,7 +74,7 @@ return packer.startup(function(use)
     use 'akinsho/toggleterm.nvim'
 
     -- theme
-    use 'morhetz/gruvbox'
+    use 'joshdick/onedark.vim'
 
     -- cmp plugins
     -- use "hrsh7th/nvim-cmp" -- The completion plugin
