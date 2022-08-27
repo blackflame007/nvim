@@ -18,7 +18,7 @@ end
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePre plugins.lua source <afile> | PackerSync
   augroup end
 ]]
 
@@ -77,7 +77,7 @@ return packer.startup(function(use)
   use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
-use 'ray-x/go.nvim'
+  use "ray-x/go.nvim"
 
   -- Completion
   use "christianchiarulli/nvim-cmp"
@@ -86,15 +86,14 @@ use 'ray-x/go.nvim'
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
-    use "rcarriga/cmp-dap"
+  use "rcarriga/cmp-dap"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "zbirenbaum/copilot-cmp"
-  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", 
-run = "./install.sh" }
+  use { "tzachar/cmp-tabnine", commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e", run = "./install.sh" }
 
   -- Snippet
-  use "L3MON4D3/LuaSnip" --snippet engine
+  use "L3MON4D3/LuaSnip" -- snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- Syntax/Treesitter
@@ -120,8 +119,8 @@ run = "./install.sh" }
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
   use "tom-anders/telescope-vim-bookmarks.nvim"
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-    use 'ThePrimeagen/git-worktree.nvim'
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  use "ThePrimeagen/git-worktree.nvim"
 
   -- Note Taking
   use "mickael-menu/zk-nvim"
@@ -157,7 +156,7 @@ run = "./install.sh" }
   -- use "Pocco81/DAPInstall.nvim"
 
   -- Tabline
-  use "akinsho/bufferline.nvim"
+  use { "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }
   -- use "tiagovla/scope.nvim"
 
   -- Statusline
@@ -194,10 +193,7 @@ run = "./install.sh" }
 
   -- Code Runner
   use "is0n/jaq-nvim"
-  use {
-    "0x100101/lab.nvim",
-    run = "cd js && npm ci",
-  }
+  --[[ use { "0x100101/lab.nvim", run = "cd js && npm ci" } ]]
 
   -- Git
   use "lewis6991/gitsigns.nvim"
@@ -237,11 +233,7 @@ run = "./install.sh" }
   use "jose-elias-alvarez/typescript.nvim"
 
   -- Markdown
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    ft = "markdown",
-  }
+  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown" }
 
   -- Graveyard
   -- use "romgrk/nvim-treesitter-context"

@@ -6,28 +6,19 @@
 --     ]]
 --   end,
 -- })
-
 vim.api.nvim_create_autocmd({ "User" }, {
   pattern = { "AlphaReady" },
   callback = function()
     vim.cmd [[
       set laststatus=0 | autocmd BufUnload <buffer> set laststatus=3
     ]]
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
-    "Jaq",
-    "qf",
-    "help",
-    "man",
-    "lspinfo",
-    "spectre_panel",
-    "lir",
-    "DressingSelect",
-    "tsplayground",
-    "Markdown",
+    "Jaq", "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "DressingSelect", "tsplayground",
+    "Markdown"
   },
   callback = function()
     vim.cmd [[
@@ -35,7 +26,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       nnoremap <silent> <buffer> <esc> :close<CR> 
       set nobuflisted 
     ]]
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -46,7 +37,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       " nnoremap <silent> <buffer> <m-r> <NOP> 
       set nobuflisted 
     ]]
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -61,7 +52,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
       set nobuflisted 
     ]]
     end
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -75,7 +66,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     end
 
     vim.opt.titlestring = get_project_dir() .. " - nvim"
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -84,7 +75,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     vim.cmd "startinsert!"
     -- TODO: if java = 2
     vim.cmd "set cmdheight=1"
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -92,7 +83,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -100,7 +91,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
-  end,
+  end
 })
 
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
@@ -115,59 +106,57 @@ vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTre
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     vim.cmd "tabdo wincmd ="
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   callback = function()
     vim.cmd "quit"
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
     vim.cmd "set formatoptions-=cro"
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
     vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*.java" },
   callback = function()
     vim.lsp.codelens.refresh()
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
     vim.cmd "hi link illuminatedWord LspReferenceText"
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   pattern = { "*" },
   callback = function()
     vim.cmd "checktime"
-  end,
+  end
 })
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   callback = function()
     local status_ok, luasnip = pcall(require, "luasnip")
-    if not status_ok then
-      return
-    end
+    if not status_ok then return end
     if luasnip.expand_or_jumpable() then
       -- ask maintainer for option to make this silent
       -- luasnip.unlink_current()
       vim.cmd [[silent! lua require("luasnip").unlink_current()]]
     end
-  end,
+  end
 })
 
 -- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
@@ -181,16 +170,19 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 --   end,
 -- })
 
+local group = vim.api.nvim_create_augroup("luaGroup", {clear = true})
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.lua" },
   callback = function()
     vim.lsp.buf.format { async = true }
   end,
+  group = group
 })
+
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*.ts" },
   callback = function()
     vim.lsp.buf.format { async = true }
-  end,
+  end
 })
