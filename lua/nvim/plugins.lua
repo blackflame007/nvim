@@ -54,7 +54,7 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
-  -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
@@ -86,6 +86,7 @@ use 'ray-x/go.nvim'
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
+    use "rcarriga/cmp-dap"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-nvim-lua"
   use "zbirenbaum/copilot-cmp"
@@ -156,7 +157,7 @@ run = "./install.sh" }
   -- use "Pocco81/DAPInstall.nvim"
 
   -- Tabline
-  -- use "akinsho/bufferline.nvim"
+  use "akinsho/bufferline.nvim"
   -- use "tiagovla/scope.nvim"
 
   -- Statusline
