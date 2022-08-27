@@ -18,7 +18,7 @@ set incsearch
 set t_Co=256                            " Support 256 colors
 set termguicolors
 set mouse+=a
-colorscheme onedark
+" colorscheme onedark
 "hi Normal guibg=NONE ctermbg=NONE
 set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indentet number

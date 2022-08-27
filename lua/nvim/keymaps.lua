@@ -1,14 +1,16 @@
-local opts = { noremap = true, silent = true }
+M = {}
+local opts = {noremap = true, silent = true}
 
-local term_opts = { silent = true }
-
+local term_opts = {silent = true}
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+-- Remap space as leader key
+keymap("n", "<Space>", "", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+keymap("n", "<C-Space>", "<cmd>WhichKey \\<leader><cr>", opts)
+keymap("n", "<C-i>", "<C-i>", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -47,6 +49,7 @@ keymap("i", "jk", "<ESC>", opts)
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
+keymap("v", "p", '"_dP', opts)
 
 -- Move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
@@ -66,3 +69,36 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Custom
+keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<F1>", ":e ~/Notes/<cr>", opts)
+
+keymap("i", "<F2>", '<cmd>lua require("renamer").rename({empty = true})<cr>', {noremap = true, silent = true})
+keymap("n", "<F2>", '<cmd>lua require("renamer").rename({empty = true})<cr>', {noremap = true, silent = true})
+keymap("n", "<F3>", ":e .<cr>", opts)
+keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
+keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
+keymap("n", "<F6>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
+keymap("n", "<F7>", "<cmd>TSPlaygroundToggle<cr>", opts)
+keymap("n", "<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
+keymap("n", "<c-n>", ":e ~/Notes/<cr>", opts)
+
+M.show_documentation = function()
+    local filetype = vim.bo.filetype
+    if vim.tbl_contains({"vim", "help"}, filetype) then
+        vim.cmd("h " .. vim.fn.expand "<cword>")
+    elseif vim.tbl_contains({"man"}, filetype) then
+        vim.cmd("Man " .. vim.fn.expand "<cword>")
+    elseif vim.fn.expand "%:t" == "Cargo.toml" then
+        require("crates").show_popup()
+    else
+        vim.lsp.buf.hover()
+    end
+end
+
+vim.api.nvim_set_keymap("n", "K", ":lua require('nvim.keymaps').show_documentation()<CR>", opts)
+
+return M

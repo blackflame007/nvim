@@ -2,7 +2,7 @@
 -- go to the above and then enter <c-v>u<unicode> and the symbold should appear
 -- or go here and upload the font file: https://mathew-kurian.github.io/CharacterMap/
 -- find more here: https://www.nerdfonts.com/cheat-sheet
-vim.g.use_nerd_icons = true
+vim.g.use_nerd_icons = false
 if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
     -- elseif vim.fn.has "mac" == 1 then
     return {
@@ -49,7 +49,8 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
             Ignore = "",
             Rename = "",
             Diff = "",
-            Repo = ""
+            Repo = "",
+            Octoface = ""
         },
         ui = {
             ArrowClosed = "",
@@ -86,7 +87,15 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
             CloudDownload = ""
         },
         diagnostics = {Error = "", Warning = "", Information = "", Question = "", Hint = ""},
-        misc = {Robot = "ﮧ", Squirrel = "", Tag = "", Watch = ""}
+        misc = {
+            Robot = "ﮧ",
+            Squirrel = "",
+            Tag = "",
+            Watch = "",
+            Smiley = "ﲃ",
+            Package = "",
+            CircuitBoard = ""
+        }
     }
 else
     --   פּ ﯟ   蘒練 some other good icons
@@ -128,7 +137,8 @@ else
             Ignore = " ",
             Rename = " ",
             Diff = " ",
-            Repo = " "
+            Repo = " ",
+            Octoface = " "
         },
         ui = {
             ArrowClosed = "",
@@ -171,6 +181,14 @@ else
             Question = " ",
             Hint = " "
         },
-        misc = {Robot = " ", Squirrel = " ", Tag = " ", Watch = " "}
+        misc = {
+            Robot = " ",
+            Squirrel = " ",
+            Tag = " ",
+            Watch = " ",
+            Smiley = " ",
+            Package = " ",
+            CircuitBoard = " "
+        }
     }
 end

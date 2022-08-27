@@ -42,7 +42,6 @@ return packer.startup(function(use)
     use "moll/vim-bbye"
     use "windwp/nvim-spectre"
     use "folke/zen-mode.nvim"
-    use "karb94/neoscroll.nvim"
     use "folke/todo-comments.nvim"
     use "kevinhwang91/nvim-bqf"
     use "ThePrimeagen/harpoon"
@@ -73,15 +72,22 @@ return packer.startup(function(use)
     -- terminal
     use 'akinsho/toggleterm.nvim'
 
-    -- theme
-    use 'joshdick/onedark.vim'
+    -- Note Taking
+    use "mickael-menu/zk-nvim"
 
-    -- cmp plugins
-    -- use "hrsh7th/nvim-cmp" -- The completion plugin
-    use {
-        "hrsh7th/nvim-cmp"
-        -- commit = "dbc72290295cfc63075dab9ea635260d2b72f2e5",
-    }
+    -- Color
+    use "NvChad/nvim-colorizer.lua"
+    use "ziontee113/color-picker.nvim"
+
+    -- Colorschemes
+    use "lunarvim/onedarker.nvim"
+    use "lunarvim/darkplus.nvim"
+    -- use "folke/tokyonight.nvim"
+    -- use "lunarvim/colorschemes"
+
+    -- Completion
+    use "hrsh7th/nvim-cmp"
+
     use "hrsh7th/cmp-buffer" -- buffer completions
     use "hrsh7th/cmp-path" -- path completions
     use "hrsh7th/cmp-cmdline" -- cmdline completions
@@ -110,7 +116,7 @@ return packer.startup(function(use)
         run = "./install.sh",
         requires = "hrsh7th/nvim-cmp"
     }
-
+    use "zbirenbaum/copilot-cmp"
     -- use 'David-Kunz/cmp-npm' -- doesn't seem to work
 
     -- snippets
@@ -126,9 +132,18 @@ return packer.startup(function(use)
     use "filipdutescu/renamer.nvim"
     use "simrat39/symbols-outline.nvim"
     use "ray-x/lsp_signature.nvim"
+    use "SmiteshP/nvim-navic"
     use "b0o/SchemaStore.nvim"
     use {"folke/trouble.nvim", cmd = "TroubleToggle"}
-    use "github/copilot.vim"
+    use {
+        "zbirenbaum/copilot.lua",
+        event = {"VimEnter"},
+        config = function()
+            vim.defer_fn(function()
+                require "nvim.copilot"
+            end, 100)
+        end
+    }
     use "RRethy/vim-illuminate"
 
     use 'sbdchd/neoformat'
@@ -144,11 +159,14 @@ return packer.startup(function(use)
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     use "JoosepAlviste/nvim-ts-context-commentstring"
     use {"p00f/nvim-ts-rainbow"}
-    -- use {'christianchiarulli/nvim-ts-rainbow'}
     use "nvim-treesitter/playground"
     use "windwp/nvim-ts-autotag"
+    use "nvim-treesitter/nvim-treesitter-textobjects"
     use "romgrk/nvim-treesitter-context"
     use "mizlan/iswap.nvim"
+
+    -- Code Runner
+    --[[ use {"0x100101/lab.nvim", run = "cd js && npm ci"} ]]
 
     -- Git
     use "lewis6991/gitsigns.nvim"
@@ -157,6 +175,10 @@ return packer.startup(function(use)
     use "mattn/vim-gist"
     use "mattn/webapi-vim"
     use "https://github.com/rhysd/conflict-marker.vim"
+
+    -- Github
+    use "pwntester/octo.nvim"
+
     -- Comments
     use {
         'numToStr/Comment.nvim',
@@ -166,7 +188,11 @@ return packer.startup(function(use)
         end
     }
 
-    -- Autopairs
+    -- Editing Support
+    use "monaqa/dial.nvim"
+    use "nacro90/numb.nvim"
+    use "andymass/vim-matchup"
+    use "karb94/neoscroll.nvim"
     use 'windwp/nvim-autopairs'
     use 'tpope/vim-sleuth'
 
@@ -175,6 +201,8 @@ return packer.startup(function(use)
     use "theHamsta/nvim-dap-virtual-text"
     use "rcarriga/nvim-dap-ui"
     use "Pocco81/DAPInstall.nvim"
+    -- Rust
+    use "Saecki/crates.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

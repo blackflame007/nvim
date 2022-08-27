@@ -138,11 +138,11 @@ local mappings = {
 
     o = {
         name = "Options",
-        w = {'<cmd>lua require("user.functions").toggle_option("wrap")<cr>', "Wrap"},
-        r = {'<cmd>lua require("user.functions").toggle_option("relativenumber")<cr>', "Relative"},
-        l = {'<cmd>lua require("user.functions").toggle_option("cursorline")<cr>', "Cursorline"},
-        s = {'<cmd>lua require("user.functions").toggle_option("spell")<cr>', "Spell"},
-        t = {'<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline"}
+        w = {'<cmd>lua require("nvim.functions").toggle_option("wrap")<cr>', "Wrap"},
+        r = {'<cmd>lua require("nvim.functions").toggle_option("relativenumber")<cr>', "Relative"},
+        l = {'<cmd>lua require("nvim.functions").toggle_option("cursorline")<cr>', "Cursorline"},
+        s = {'<cmd>lua require("nvim.functions").toggle_option("spell")<cr>', "Spell"},
+        t = {'<cmd>lua require("nvim.functions").toggle_tabline()<cr>', "Tabline"}
     },
 
     r = {
@@ -234,7 +234,7 @@ local mappings = {
         R = {"<cmd>TroubleToggle lsp_references<cr>", "References"},
         s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
         S = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols"},
-        t = {'<cmd>lua require("user.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics"}
+        t = {'<cmd>lua require("nvim.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics"}
     },
 
     s = {
