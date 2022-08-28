@@ -156,8 +156,7 @@ return packer.startup(function(use)
   -- use "Pocco81/DAPInstall.nvim"
 
   -- Tabline
-  use { "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }
-  -- use "tiagovla/scope.nvim"
+  use "noib3/nvim-cokeline"
 
   -- Statusline
   use "christianchiarulli/lualine.nvim"
@@ -265,6 +264,8 @@ return packer.startup(function(use)
   -- use "drybalka/tree-climber.nvim"
   -- use "phaazon/hop.nvim"
   -- use { "michaelb/sniprun", run = "bash ./install.sh" }
+  -- use "akinsho/bufferline.nvim"
+  -- use "tiagovla/scope.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
