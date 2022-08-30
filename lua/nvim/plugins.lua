@@ -153,6 +153,7 @@ return packer.startup(function(use)
   use "mfussenegger/nvim-dap"
   use "rcarriga/nvim-dap-ui"
   -- use "theHamsta/nvim-dap-virtual-text"
+  use "blackflame007/DAPInstall.nvim"
   -- use "Pocco81/DAPInstall.nvim"
 
   -- Tabline

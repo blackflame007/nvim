@@ -11,4 +11,4 @@ make CMAKE_BUILD_TYPE=Release
 
 sudo make install
 
-rm -rf ~/.config/nvim/neovim
+rm -rf ~/neovim
