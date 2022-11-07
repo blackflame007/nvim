@@ -125,8 +125,9 @@ cmp.setup {
 
 -- Setup lspconfig.
 local function config(_config)
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     return vim.tbl_deep_extend("force", {
-        capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+        capabilities = capabilities
     }, _config or {})
 end
 

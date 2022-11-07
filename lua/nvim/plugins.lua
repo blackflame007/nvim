@@ -174,8 +174,8 @@ return packer.startup(function(use)
 
   -- Comment
   use "numToStr/Comment.nvim"
-  -- use "folke/todo-comments.nvim"
-  use "B4mbus/todo-comments.nvim"
+  use "folke/todo-comments.nvim"
+  -- use "B4mbus/todo-comments.nvim"
 
   -- Terminal
   use "akinsho/toggleterm.nvim"
@@ -261,7 +261,7 @@ return packer.startup(function(use)
   -- use "nvim-lua/lsp_extensions.nvim"
   -- use { "christianchiarulli/nvim-gps", branch = "text_hl" }
   -- use "stevearc/stickybuf.nvim"
-  -- use "folke/trouble.nvim"
+  use "folke/trouble.nvim"
   -- use "drybalka/tree-climber.nvim"
   -- use "phaazon/hop.nvim"
   -- use { "michaelb/sniprun", run = "bash ./install.sh" }
