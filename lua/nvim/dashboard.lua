@@ -32,7 +32,7 @@ local function footer()
     -- local fortune = handle:read("*a")
     -- handle:close()
     -- return fortune
-    return "techgeekinsider.com"
+    return "Quick Tip: `:Telescope keymaps` used to fuzzy find all keymaps set in nvim"
 end
 
 dashboard.section.footer.val = footer()
