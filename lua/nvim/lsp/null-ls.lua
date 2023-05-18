@@ -21,8 +21,18 @@ null_ls.setup {
     formatting.stylua,
     formatting.shfmt,
     formatting.google_java_format,
+     -- Go
+    formatting.gofumpt,
+    formatting.goimports_reviser,
+    formatting.golines.with({
+      extra_args = {
+        "--max-len=180",
+        "--base-formatter=gofumpt",
+      },
+    }),
     -- diagnostics.flake8,
     diagnostics.shellcheck,
+    diagnostics.revive
   },
 }
 
