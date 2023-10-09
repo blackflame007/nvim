@@ -1,4 +1,5 @@
-local get_hex = require("cokeline/utils").get_hex
+-- lua/nvim/cokeline.lua
+local get_hex = require('cokeline.hlgroups').get_hl_attr
 local mappings = require "cokeline/mappings"
 
 local str_rep = string.rep
