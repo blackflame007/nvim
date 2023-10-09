@@ -65,8 +65,8 @@ return packer.startup(function(use)
   use "github/copilot.vim"
   use "RRethy/vim-illuminate"
   use {
-    'j-hui/fidget.nvim',
-    tag = 'legacy'
+    "j-hui/fidget.nvim",
+    tag = "legacy",
   }
   use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
@@ -126,8 +126,8 @@ return packer.startup(function(use)
   -- Colorschemes
   use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
-  -- use "folke/tokyonight.nvim"
-  -- use "lunarvim/colorschemes"
+  use "folke/tokyonight.nvim"
+  use "lunarvim/colorschemes"
 
   -- Utility
   use "rcarriga/nvim-notify"
@@ -161,7 +161,7 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
 
   -- UI
-  use {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}
+  use { "ray-x/guihua.lua", run = "cd lua/fzy && make" }
 
   -- Indent
   use "lukas-reineke/indent-blankline.nvim"
