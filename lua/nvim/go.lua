@@ -32,13 +32,15 @@ require('go').setup({
     --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
     -- end
     -- to setup a table of codelens
-    lsp_diag_hdlr = true, -- hook lsp diag handler
-    lsp_diag_underline = true,
-    -- virtual text setup
-    lsp_diag_virtual_text = { space = 0, prefix = "" },
-    lsp_diag_signs = true,
     lsp_diag_update_in_insert = false,
     lsp_document_formatting = true,
+    diagnostic = {
+      hdlr = true, -- Enable the new diagnostic handler
+      underline = true, -- Enable the new diagnostic underline
+      virtual_text = { space = 0, prefix = "" }, -- Configure the new diagnostic virtual text
+      signs = true, -- Enable the new diagnostic signs
+      update_in_insert = false, -- Set to false to disable diagnostic updates in insert mode
+  },
     -- set to true: use gopls to format
     -- false if you want to use other formatter tool(e.g. efm, nulls)
    lsp_inlay_hints = {
