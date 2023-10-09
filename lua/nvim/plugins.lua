@@ -63,17 +63,11 @@ return packer.startup(function(use)
   use "simrat39/symbols-outline.nvim"
   use "b0o/SchemaStore.nvim"
   use "github/copilot.vim"
-  -- use {
-  --   "zbirenbaum/copilot.lua",
-  --   event = { "VimEnter" },
-  --   config = function()
-  --     vim.defer_fn(function()
-  --       require "nvim.copilot"
-  --     end, 100)
-  --   end,
-  -- }
   use "RRethy/vim-illuminate"
-  use "j-hui/fidget.nvim"
+  use {
+    'j-hui/fidget.nvim',
+    tag = 'legacy'
+  }
   use "lvimuser/lsp-inlayhints.nvim"
   -- use "simrat39/inlay-hints.nvim"
   use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
@@ -155,15 +149,19 @@ return packer.startup(function(use)
   -- use "theHamsta/nvim-dap-virtual-text"
   use "blackflame007/DAPInstall.nvim"
   -- use "Pocco81/DAPInstall.nvim"
+  use "theHamsta/nvim-dap-virtual-text"
 
   -- Tabline
-  use "noib3/nvim-cokeline"
+  use "willothy/nvim-cokeline"
 
   -- Statusline
   use "christianchiarulli/lualine.nvim"
 
   -- Startup
   use "goolord/alpha-nvim"
+
+  -- UI
+  use {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}
 
   -- Indent
   use "lukas-reineke/indent-blankline.nvim"
