@@ -6,6 +6,13 @@ end
 -- local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
 -- ft_to_parser.motoko = "typescript"
 
+require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+  languages = {
+    typescript = '// %s',
+  },
+}
+
 configs.setup {
   ensure_installed = "all", -- one of "all" or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
@@ -28,10 +35,6 @@ configs.setup {
     enable = true,
   },
   indent = { enable = true, disable = { "python", "css", "rust" } },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
   autotag = {
     enable = true,
     disable = { "xml", "markdown" },
@@ -117,3 +120,10 @@ configs.setup {
     },
   },
 }
+
+
+vim.filetype.add({
+  extension = {
+   templ = "templ",
+  },
+ })
