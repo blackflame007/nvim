@@ -84,7 +84,12 @@ if vim.fn.has "mac" == 1 or vim.g.use_nerd_icons then
             ChevronRight = ">",
             Table = "",
             Calendar = "",
-            CloudDownload = ""
+            CloudDownload = "",
+            Save = "💾",
+            Close = "",
+            CloseBuffer = "",
+            Comment = "",
+            HeartBeat = ""
         },
         diagnostics = {Error = "", Warning = "", Information = "", Question = "", Hint = ""},
         misc = {

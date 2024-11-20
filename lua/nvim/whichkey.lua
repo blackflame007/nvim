@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local icons = require "nvim.icons"
+
 local setup = {
   plugins = {
     marks = true,
@@ -42,35 +44,37 @@ local mappings = {
     "<leader>a",
     "<cmd>Alpha<cr>",
     desc = "Alpha",
+    icon = { icon = icons.ui.Dashboard, color = "blue" },
   },
   {
     "<leader>b",
     "<cmd>Telescope buffers<cr>",
     desc = "Buffers",
-    icon = { icon = "󰓩 ", color = "blue" },
+    icon = { icon = icons.ui.List, color = "blue" },
   },
   {
     "<leader>e",
     "<cmd>NvimTreeToggle<cr>",
     desc = "Explorer",
-    icon = { icon = " ", color = "green" },
+    icon = { icon = icons.documents.Files, color = "green" },
   },
   {
     "<leader>w",
     "<cmd>w!<CR>",
     desc = "Save",
-    icon = { icon = "󰆓 ", color = "green" },
+    icon = { icon = icons.ui.Save, color = "green" },
   },
   {
     "<leader>q",
     "<cmd>q!<CR>",
     desc = "Quit",
-    icon = { icon = " ", color = "red" },
+    icon = { icon = icons.ui.Close, color = "red" },
   },
   {
     "<leader>c",
     "<cmd>Bdelete!<CR>",
     desc = "Close Buffer",
+    icon = { icon = icons.ui.CloseBuffer, color = "red" },
   },
   {
     "<leader>h",
@@ -81,7 +85,7 @@ local mappings = {
   {
     "<leader>f",
     group = "Find",
-    icon = { icon = " ", color = "purple" },
+    icon = { icon = icons.ui.Search, color = "azure" },
   },
   {
     "<leader>ff",
@@ -89,7 +93,7 @@ local mappings = {
     desc = "Find files",
   },
   {
-    "<leader>fg",
+    "<leader>fg", 
     "<cmd>Telescope live_grep<cr>",
     desc = "Find Text",
   },
@@ -98,12 +102,18 @@ local mappings = {
     "<cmd>Telescope projects<cr>",
     desc = "Projects",
   },
+  {
+    "<leader>/",
+    "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>",
+    desc = "Toggle Comment",
+    icon = { icon = icons.ui.Comment, color = "green" },
+  },
 
   -- Packer group
   {
     "<leader>p",
     group = "Packer",
-    icon = { icon = " ", color = "azure" },
+    icon = { icon = icons.ui.Package, color = "azure" },
   },
   {
     "<leader>pc",
@@ -135,12 +145,13 @@ local mappings = {
   {
     "<leader>g",
     group = "Git",
-    icon = { icon = " ", color = "orange" },
+    icon = { icon = icons.git.Octoface, color = "orange" },
   },
   {
     "<leader>gg",
     "<cmd>lua _LAZYGIT_TOGGLE()<CR>",
     desc = "Lazygit",
+    icon = { icon = icons.git.Octoface, color = "orange" },
   },
   {
     "<leader>gj",
@@ -158,7 +169,7 @@ local mappings = {
   {
     "<leader>l",
     group = "LSP",
-    icon = { icon = " ", color = "blue" },
+    icon = { icon = icons.ui.Gear, color = "blue" },
   },
   {
     "<leader>la",
@@ -169,6 +180,7 @@ local mappings = {
     "<leader>ld",
     "<cmd>Telescope diagnostics bufnr=0<cr>",
     desc = "Document Diagnostics",
+    icon = { icon = icons.ui.HeartBeat, color = "blue" },
   },
   -- ... rest of LSP mappings ...
 }
