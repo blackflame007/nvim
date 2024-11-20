@@ -51,6 +51,9 @@ vim.opt.fillchars:append{stl = ' '}
 
 vim.opt.shortmess:append "c"
 
+-- Python provider
+vim.g.python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
+
 for k, v in pairs(options) do vim.opt[k] = v end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
