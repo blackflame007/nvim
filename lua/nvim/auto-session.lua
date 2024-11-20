@@ -30,7 +30,7 @@ local opts = {
   bypass_session_save_file_types = { "alpha" },
 }
 
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 telescope.load_extension "session-lens"
 
