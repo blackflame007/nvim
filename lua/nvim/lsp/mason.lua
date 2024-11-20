@@ -19,7 +19,7 @@ local servers = {
   "lua_ls",
   "tflint",
   "terraformls",
-  "tsserver",
+  "ts_ls",
   "pyright",
   "yamlls",
   "bashls",
