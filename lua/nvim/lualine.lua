@@ -50,6 +50,11 @@ if lualine_scheme == "darkplus_dark" then
   purple = "#B48EAD"
 end
 
+-- First create the highlight groups
+vim.api.nvim_set_hl(0, 'StatusLine', { fg = '#6b727f', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'StatusLineSeparator', { fg = '#6b727f', bg = 'NONE', italic = true })
+
+-- Then get the highlights
 local sl_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
 local sl_hl_sep = vim.api.nvim_get_hl_by_name("StatusLineSeparator", true)
 
