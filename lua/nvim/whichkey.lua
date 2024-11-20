@@ -163,7 +163,6 @@ local mappings = {
     "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",
     desc = "Prev Hunk",
   },
-  -- ... rest of git mappings ...
 
   -- LSP group
   {
@@ -182,7 +181,6 @@ local mappings = {
     desc = "Document Diagnostics",
     icon = { icon = icons.ui.HeartBeat, color = "blue" },
   },
-  -- ... rest of LSP mappings ...
 }
 
 which_key.setup(setup)
