@@ -1,15 +1,14 @@
-M = {}
+local M = {}
+
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
-  return
+  return M
 end
 
 local lualine_scheme = "tokyonight-night"
--- local lualine_scheme = "onedarker_alt"
-
 local status_theme_ok, theme = pcall(require, "lualine.themes." .. lualine_scheme)
 if not status_theme_ok then
-  return
+  return M
 end
 
 -- check if value in table
@@ -340,7 +339,7 @@ local spaces = {
     end
 
     -- TODO: update codicons and use their indent
-    return hl_str(" ", "SLSep") .. hl_str(" " .. shiftwidth .. space, "SLIndent") .. hl_str("", "SLSep")
+    return hl_str(" ��", "SLSep") .. hl_str(" " .. shiftwidth .. space, "SLIndent") .. hl_str("", "SLSep")
   end,
   padding = 0,
   -- separator = "%#SLSeparator#" .. " │" .. "%*",
@@ -444,37 +443,35 @@ local location = {
   padding = 0,
 }
 
-lualine.setup {
-  options = {
-    globalstatus = true,
-    icons_enabled = true,
-    -- theme = "auto",
-    theme = theme,
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    disabled_filetypes = { "alpha", "dashboard" },
-    always_divide_middle = true,
-  },
-  sections = {
-    lualine_a = { left_pad, mode, branch, right_pad },
-    lualine_b = { left_pad_alt, diagnostics, right_pad_alt },
-    -- lualine_c = {},
-    lualine_c = { current_signature },
-    -- lualine_x = { diff, spaces, "encoding", filetype },
-    -- lualine_x = { diff, lanuage_server, spaces, filetype },
-    -- lualine_x = { lanuage_server, spaces, filetype },
-    lualine_x = { lanuage_server, spaces, filetype },
-    lualine_y = {},
-    lualine_z = { location, progress },
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = { "location" },
-    lualine_y = {},
-    lualine_z = {},
-  },
-  tabline = {},
-  extensions = {},
+M.options = {
+  globalstatus = true,
+  icons_enabled = true,
+  theme = theme,
+  component_separators = { left = "", right = "" },
+  section_separators = { left = "", right = "" },
+  disabled_filetypes = { "alpha", "dashboard" },
+  always_divide_middle = true,
 }
+
+M.sections = {
+  lualine_a = { left_pad, mode, branch, right_pad },
+  lualine_b = { left_pad_alt, diagnostics, right_pad_alt },
+  lualine_c = { current_signature },
+  lualine_x = { lanuage_server, spaces, filetype },
+  lualine_y = {},
+  lualine_z = { location, progress },
+}
+
+M.inactive_sections = {
+  lualine_a = {},
+  lualine_b = {},
+  lualine_c = {},
+  lualine_x = { "location" },
+  lualine_y = {},
+  lualine_z = {},
+}
+
+M.tabline = {}
+M.extensions = {}
+
+return M

@@ -1,5 +1,4 @@
-local status_ok, gitsigns = pcall(require, "gitsigns")
-if not status_ok then return end
+local M = {}
 
 -- Set up highlight groups first
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { link = 'GitSignsAdd' })
@@ -12,7 +11,7 @@ vim.api.nvim_set_hl(0, 'GitSignsDelete', { link = 'GitSignsDelete' })
 vim.api.nvim_set_hl(0, 'GitSignsDeleteNr', { link = 'GitSignsDeleteNr' })
 vim.api.nvim_set_hl(0, 'GitSignsDeleteLn', { link = 'GitSignsDeleteLn' })
 
-gitsigns.setup {
+return {
     signs = {
         add = { text = "▎" },
         change = { text = "▎" },

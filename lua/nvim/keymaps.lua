@@ -94,6 +94,11 @@ keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
 keymap("n", "<c-n>", ":e ~/Notes/<cr>", opts)
 
+-- Neorg
+keymap("n", ",nn", "<Plug>(neorg.dirman.new-note)<CR>", opts)
+
+keymap("n", ",td", "<Plug>(neorg.qol.todo-items.todo.task-done)<CR>", opts)
+
 M.show_documentation = function()
     local filetype = vim.bo.filetype
     if vim.tbl_contains({"vim", "help"}, filetype) then
