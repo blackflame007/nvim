@@ -10,6 +10,7 @@ local warnings_fg = get_hex("DiagnosticWarn", "fg")
 
 local red = vim.g.terminal_color_1
 local yellow = vim.g.terminal_color_3
+local green = vim.g.terminal_color_2
 
 local min_buffer_width = 23
 
@@ -97,7 +98,7 @@ local components = {
   diagnostics = {
     text = function(buffer)
       return
-        (buffer.diagnostics.errors ~= 0 and "  " .. buffer.diagnostics.errors)
+        (buffer.diagnostics.errors ~= 0 and "  " .. buffer.diagnostics.errors)
           or (buffer.diagnostics.warnings ~= 0 and "  " .. buffer.diagnostics.warnings)
           or ""
     end,
@@ -109,7 +110,7 @@ local components = {
 
   close_or_unsaved = {
     text = function(buffer)
-      return buffer.is_modified and "●" or ""
+      return buffer.is_modified and "●" or "󱣪"
     end,
     fg = function(buffer)
       return buffer.is_modified and green or nil
