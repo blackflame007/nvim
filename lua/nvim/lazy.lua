@@ -200,17 +200,7 @@ require("lazy").setup({
         "nvim-lua/plenary.nvim",
         "kyazdani42/nvim-web-devicons",
       },
-      config = function()
-        require("cokeline").setup({
-          show_if_buffers_are_at_least = 2,
-          buffers = {
-            new_buffers_position = "next",
-          },
-          rendering = {
-            max_buffer_width = 30,
-          },
-        })
-      end,
+      config = true,
     },
     -- Snippets
     "L3MON4D3/LuaSnip",
