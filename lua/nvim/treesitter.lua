@@ -24,12 +24,9 @@ configs.setup {
     -- include_match_words = false
   },
   highlight = {
-    use_languagetree = true,
     enable = true, -- false will disable the whole extension
-    -- disable = { "css", "html" }, -- list of language that will be disabled
-    -- disable = { "css", "markdown" }, -- list of language that will be disabled
     disable = { "markdown" }, -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false, -- Set this to false to avoid performance issues
   },
   autopairs = {
     enable = true,
@@ -40,20 +37,9 @@ configs.setup {
     disable = { "xml", "markdown" },
   },
   rainbow = {
-    enable = true,
-    extended_mode = false,
-    colors = {
-      -- "#68a0b0",
-      -- "#946EaD",
-      -- "#c7aA6D",
-      "Gold",
-      "Orchid",
-      "DodgerBlue",
-      -- "Cornsilk",
-      -- "Salmon",
-      -- "LawnGreen",
-    },
-    disable = { "html" },
+    enable = false,
+    extended_mode = true,
+    max_file_lines = nil,
   },
   playground = {
     enable = true,
