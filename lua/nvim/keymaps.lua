@@ -95,9 +95,42 @@ keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
 keymap("n", "<c-n>", ":e ~/Notes/<cr>", opts)
 
 -- Neorg
-keymap("n", ",nn", "<Plug>(neorg.dirman.new-note)<CR>", opts)
+keymap("n", ",nn", "<Plug>(neorg.dirman.new-note)", opts)
+keymap("n", ",td", "<Plug>(neorg.qol.todo-items.todo.task-done)", opts)
 
-keymap("n", ",td", "<Plug>(neorg.qol.todo-items.todo.task-done)<CR>", opts)
+-- Insert mode keymaps
+keymap("i", "<C-d>", "<Plug>(neorg.promo.demote)", opts)
+keymap("i", "<C-t>", "<Plug>(neorg.promo.promote)", opts)
+keymap("i", "<M-CR>", "<Plug>(neorg.itero.next-iteration)", opts)
+keymap("i", "<M-d>", "<Plug>(neorg.tempus.insert-date.insert-mode)", opts)
+
+-- Normal mode keymaps
+keymap("n", "<,", "<Plug>(neorg.promo.demote)", opts)
+keymap("n", "<<", "<Plug>(neorg.promo.demote.nested)", opts)
+keymap("n", "<C-Space>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", opts)
+keymap("n", "<CR>", "<Plug>(neorg.esupports.hop.hop-link)", opts)
+keymap("n", ",cm", "<Plug>(neorg.looking-glass.magnify-code-block)", opts)
+keymap("n", ",id", "<Plug>(neorg.tempus.insert-date)", opts)
+keymap("n", ",li", "<Plug>(neorg.pivot.list.invert)", opts)
+keymap("n", ",lt", "<Plug>(neorg.pivot.list.toggle)", opts)
+
+-- Task management
+keymap("n", ",ta", "<Plug>(neorg.qol.todo-items.todo.task-ambiguous)", opts)
+keymap("n", ",tc", "<Plug>(neorg.qol.todo-items.todo.task-cancelled)", opts)
+keymap("n", ",th", "<Plug>(neorg.qol.todo-items.todo.task-on-hold)", opts)
+keymap("n", ",ti", "<Plug>(neorg.qol.todo-items.todo.task-important)", opts)
+keymap("n", ",tp", "<Plug>(neorg.qol.todo-items.todo.task-pending)", opts)
+keymap("n", ",tr", "<Plug>(neorg.qol.todo-items.todo.task-recurring)", opts)
+keymap("n", ",tu", "<Plug>(neorg.qol.todo-items.todo.task-undone)", opts)
+
+-- Additional navigation
+keymap("n", "<M-CR>", "<Plug>(neorg.esupports.hop.hop-link.vsplit)", opts)
+keymap("n", ">.", "<Plug>(neorg.promo.promote)", opts)
+keymap("n", ">>", "<Plug>(neorg.promo.promote.nested)", opts)
+
+-- Visual mode keymaps
+keymap("v", "<", "<Plug>(neorg.promo.demote.range)", opts)
+keymap("v", ">", "<Plug>(neorg.promo.promote.range)", opts)
 
 M.show_documentation = function()
     local filetype = vim.bo.filetype

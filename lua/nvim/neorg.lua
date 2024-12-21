@@ -9,6 +9,7 @@ require("neorg").setup({
         },
         ["core.dirman.utils"] = {},
         ["core.autocommands"] = {},
+        ["core.integrations.treesitter"] = {},
         ["core.storage"] = {},
         ["core.ui"] = {},
         ["core.dirman"] = {
@@ -39,7 +40,6 @@ require("neorg").setup({
                 extensions = "all",
             },
         },
-        ["core.integrations.treesitter"] = {},
         ["core.highlights"] = {},
     },
 })
