@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -76,8 +76,20 @@ require("lazy").setup({
     },
     "j-hui/fidget.nvim",
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    "ray-x/go.nvim",
-
+    {
+      "ray-x/go.nvim",
+      dependencies = { -- optional packages
+        "ray-x/guihua.lua",
+        "neovim/nvim-lspconfig",
+        "nvim-treesitter/nvim-treesitter",
+      },
+      config = function()
+        require("go").setup()
+      end,
+      event = { "CmdlineEnter" },
+      ft = { "go", 'gomod' },
+      build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+    },
     -- Debugging
     {
       "mfussenegger/nvim-dap",
@@ -251,13 +263,13 @@ require("lazy").setup({
       "vhyrro/luarocks.nvim",
       priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
       config = true,
-    },    
-    {
-      "nvim-neorg/neorg",
-      lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-      version = "*", -- Pin Neorg to the latest stable release
-      config = true,
     },
+    -- {
+    --   "nvim-neorg/neorg",
+    --   lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    --   version = "*", -- Pin Neorg to the latest stable release
+    --   config = true,
+    -- },
 
     -- Colors and Themes
     "NvChad/nvim-colorizer.lua",
@@ -401,3 +413,4 @@ require("lazy").setup({
     },
   },
 })
+
