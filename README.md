@@ -65,12 +65,20 @@ _Dashboard with quick actions and keybindings_
 
 ```
 .
-├── init.lua                # Main entry point
-├── lua/nvim/               # Configuration modules
-│   ├── lazy.lua            # Plugin manager config
+├── init.lua                # Main entry point that loads all modules
+├── lua/nvim/               # Main configuration directory
+│   ├── lazy.lua            # Plugin manager with plugin specifications
+│   ├── keymaps.lua         # Key mappings
+│   ├── options.lua         # Neovim options
+│   ├── colorscheme.lua     # Color scheme settings
 │   ├── lsp/                # LSP configurations
-│   ├── plugins/            # Plugin configurations
-│   └── ...                 # Other configuration files
+│   ├── autocommands.lua    # Autocommands
+│   ├── cmp.lua             # Completion setup
+│   ├── treesitter.lua      # Treesitter configuration
+│   ├── telescope.lua       # Telescope configuration
+│   ├── dap.lua             # Debugging setup
+│   ├── whichkey.lua        # Which-key mappings
+│   └── various plugins...   # Other plugin configurations
 └── after/                  # Files loaded after plugins
 ```
 
@@ -78,7 +86,7 @@ _Dashboard with quick actions and keybindings_
 
 - Colors and theme settings are in `lua/nvim/colorscheme.lua`
 - Key mappings are defined in `lua/nvim/keymaps.lua`
-- Plugin configurations are in their respective files
+- Plugin configurations are in their respective files under `lua/nvim/`
 - LSP configurations are in the `lua/nvim/lsp` directory
 
 ## Key Features Explained
