@@ -24,7 +24,7 @@ _Dashboard with quick actions and keybindings_
 
 ## Requirements
 
-- Neovim >= 0.8.0
+- Neovim >= 0.11.1
 - Git
 - Node.js (for LSP servers)
 - Python 3
@@ -60,6 +60,16 @@ _Dashboard with quick actions and keybindings_
    ```
 
    On first startup, Lazy.nvim will automatically bootstrap itself and install all plugins.
+
+5. After installation, you can run `:Lazy sync` to ensure all plugins are up to date.
+
+6. Run a health check to verify everything is working:
+
+This will check for missing dependencies and configurations.
+
+   ```bash
+   :checkhealth
+   ```
 
 ## Structure
 
