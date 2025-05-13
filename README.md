@@ -1,11 +1,118 @@
-# nvim
+# Neovim Configuration
 
-This is a custom configuration for Neovim using lua and Packer as the package manager
+A feature-rich Neovim configuration using Lua and Lazy as the package manager.
 
-Neovim Version 5.0+ is required for this configuration as Treesitter is required for this custom config
+![Neovim Dashboard](./screenshots/neovim.png)
+_Dashboard with quick actions and keybindings_
+
+## Features
+
+- 🔥 Fast startup with lazy loading plugins
+- 🧩 Modern UI with custom components
+- 🌳 File explorer with nvim-tree
+- 🔍 Fuzzy finding with Telescope
+- 📊 Git integration (blame, signs, diffs)
+- 🧠 LSP configurations for multiple languages
+- 🎨 Code highlighting with Treesitter
+- 🤖 Autocompletion with nvim-cmp
+- 🐞 Debugging with DAP
+- ⚡ Navigation with Hop and Harpoon
+- 📝 Note taking with Todo-comments
+- 📦 Terminal integration with Toggleterm
+- 🔄 Session management
+- 🔧 Powerful custom functions
 
 ## Requirements
-Node.js, Rust, Python 
-```bash
-cargo install stylua
+
+- Neovim >= 0.8.0
+- Git
+- Node.js (for LSP servers)
+- Python 3
+- Rust (for some tools)
+- A Nerd Font installed and configured in your terminal
+
+## Installation
+
+1. Backup your existing Neovim configuration (if any):
+
+   ```bash
+   mv ~/.config/nvim ~/.config/nvim.bak
+   ```
+
+2. Clone this repository:
+
+   ```bash
+   git clone https://github.com/blackflame007/nvim.git ~/.config/nvim
+   ```
+
+3. Install required dependencies:
+
+   ```bash
+   # Install language servers and tools
+   npm install -g typescript typescript-language-server pyright vscode-langservers-extracted
+   cargo install stylua
+   ```
+
+4. Start Neovim:
+
+   ```bash
+   nvim
+   ```
+
+   On first startup, Lazy.nvim will automatically bootstrap itself and install all plugins.
+
+## Structure
+
 ```
+.
+├── init.lua                # Main entry point
+├── lua/nvim/               # Configuration modules
+│   ├── lazy.lua            # Plugin manager config
+│   ├── lsp/                # LSP configurations
+│   ├── plugins/            # Plugin configurations
+│   └── ...                 # Other configuration files
+└── after/                  # Files loaded after plugins
+```
+
+## Customization
+
+- Colors and theme settings are in `lua/nvim/colorscheme.lua`
+- Key mappings are defined in `lua/nvim/keymaps.lua`
+- Plugin configurations are in their respective files
+- LSP configurations are in the `lua/nvim/lsp` directory
+
+## Key Features Explained
+
+### Plugin Management
+
+Using Lazy.nvim for efficient, lazy-loaded plugin management.
+
+### LSP Support
+
+Configured for multiple languages with intelligent code navigation, diagnostics, and autocompletion.
+
+### Customizable UI
+
+Status line, buffer line, and various UI elements that provide useful information while staying minimal.
+
+### Terminal Integration
+
+Toggleable terminal with custom settings and keybindings.
+
+### Git Integration
+
+Git blame, signs, diff view, and various Git operations right from the editor.
+
+## Troubleshooting
+
+- If you encounter issues with plugins, try running `:Lazy sync`
+- For LSP issues, check `:LspInfo` and `:LspLog`
+- For Treesitter problems, run `:TSUpdate` and `:TSInstallInfo`
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
