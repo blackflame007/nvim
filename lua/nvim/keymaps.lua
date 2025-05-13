@@ -147,4 +147,7 @@ end
 
 vim.api.nvim_set_keymap("n", "K", ":lua require('nvim.keymaps').show_documentation()<CR>", opts)
 
+-- Inlay hints
+keymap("n", "<leader>ih", "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr = 0 })<CR>", opts)
+
 return M

@@ -11,7 +11,6 @@ end
 local servers = {
   "cssls",
   "cssmodules_ls",
-  "emmet_ls",
   "html",
   "jdtls",
   "jsonls",

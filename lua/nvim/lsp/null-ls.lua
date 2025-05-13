@@ -1,16 +1,24 @@
-local null_ls_status_ok, null_ls = pcall(require, "null-ls")
-if not null_ls_status_ok then
+-- Suppress any deprecation warnings
+vim.g.nonels_suppress_issue58 = true
+
+local none_ls_status_ok, none_ls = pcall(require, "null-ls")
+if not none_ls_status_ok then
   return
 end
 
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = null_ls.builtins.diagnostics
+local none_ls_status_ok, none_ls = pcall(require, "none-ls")
+if not none_ls_status_ok then
+  return
+end
+
+-- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+local formatting = none_ls.builtins.formatting
+-- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+local diagnostics = none_ls.builtins.diagnostics
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
 -- npm install --save-dev prettier prettier-plugin-solidity
-null_ls.setup {
+none_ls.setup {
   debug = true,
   sources = {
     formatting.prettier.with {
@@ -21,15 +29,16 @@ null_ls.setup {
     formatting.stylua,
     formatting.shfmt,
     formatting.google_java_format,
-     -- Go
+    -- Go
     formatting.gofumpt,
     formatting.goimports_reviser,
-    formatting.golines.with({
-      extra_args = {
-        "--max-len=180",
-        "--base-formatter=gofumpt",
-      },
-    }),
+    -- Use gopls instead of golines
+    -- formatting.golines.with({
+    --   extra_args = {
+    --     "--max-len=180",
+    --     "--base-formatter=gofumpt",
+    --   },
+    -- }),
     -- diagnostics.flake8,
     diagnostics.shellcheck,
     diagnostics.revive
@@ -37,7 +46,7 @@ null_ls.setup {
 }
 
 local unwrap = {
-  method = null_ls.methods.DIAGNOSTICS,
+  method = none_ls.methods.DIAGNOSTICS,
   filetypes = { "rust" },
   generator = {
     fn = function(params)
@@ -47,7 +56,7 @@ local unwrap = {
       for i, line in ipairs(params.content) do
         local col, end_col = line:find "unwrap()"
         if col and end_col then
-          -- null-ls fills in undefined positions
+          -- none-ls fills in undefined positions
           -- and converts source diagnostics into the required format
           table.insert(diagnostics, {
             row = i,
@@ -64,4 +73,4 @@ local unwrap = {
   },
 }
 
-null_ls.register(unwrap)
+none_ls.register(unwrap)

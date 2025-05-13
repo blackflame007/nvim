@@ -28,8 +28,7 @@ local opts = {
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-telescope.load_extension "session-lens"
-
+-- Set up session-lens first
 session_lens.setup {
   path_display = { "shorten" },
   -- theme_conf = { border = false },
@@ -37,4 +36,8 @@ session_lens.setup {
   prompt_title = "Sessions",
 }
 
+-- Then load the telescope extension
+telescope.load_extension "session-lens"
+
+-- Finally set up auto-session
 auto_session.setup(opts)

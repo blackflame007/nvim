@@ -19,7 +19,8 @@ zen_mode.setup {
     },
     plugins = {gitsigns = {enabled = false}, tmux = {enabled = false}, twilight = {enabled = false}},
     on_open = function()
-        require("lsp-inlayhints").toggle()
+        -- Toggle inlay hints for the current buffer
+        vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
         vim.g.cmp_active = false
         vim.cmd [[LspStop]]
         local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", nil, {scope = "local"})
@@ -27,7 +28,8 @@ zen_mode.setup {
         if vim.fn.exists("#" .. "_winbar") == 1 then vim.cmd("au! " .. "_winbar") end
     end,
     on_close = function()
-        require("lsp-inlayhints").toggle()
+        -- Restore inlay hints for the current buffer
+        vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
         vim.g.cmp_active = true
         vim.cmd [[LspStart]]
         require("nvim.winbar").create_winbar()

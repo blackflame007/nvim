@@ -130,8 +130,10 @@ M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   attach_navic(client, bufnr)
 
-  if client.name == "tsserver" then
-    require("lsp-inlayhints").on_attach(client, bufnr)
+  -- Enable inlay hints if the client supports it
+  if client.server_capabilities.inlayHintProvider then
+    -- Enable inlay hints
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
 end
 

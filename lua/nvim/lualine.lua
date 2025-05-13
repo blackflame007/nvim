@@ -374,7 +374,7 @@ local lanuage_server = {
       end
     end
 
-    local clients = vim.lsp.buf_get_clients()
+    local clients = vim.lsp.get_clients({buffer = 0})
     local client_names = {}
     local copilot_active = false
 

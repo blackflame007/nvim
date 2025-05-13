@@ -39,9 +39,42 @@ require("lazy").setup({
     "simrat39/symbols-outline.nvim",
     "b0o/SchemaStore.nvim",
     { "github/copilot.vim", lazy = false },
-    "RRethy/vim-illuminate",
+    {
+      "RRethy/vim-illuminate",
+      event = { "BufReadPost", "BufNewFile" },
+      config = function()
+        require("illuminate").configure({
+          providers = {
+            "lsp",
+            "treesitter",
+            "regex",
+          },
+          delay = 120,
+          filetypes_denylist = {
+            "dirvish",
+            "fugitive",
+            "alpha",
+            "NvimTree",
+            "packer",
+            "neogitstatus",
+            "Trouble",
+            "lir",
+            "Outline",
+            "spectre_panel",
+            "toggleterm",
+            "DressingSelect",
+            "TelescopePrompt",
+          },
+          filetypes_allowlist = {},
+          modes_denylist = {},
+          modes_allowlist = {},
+          providers_regex_syntax_denylist = {},
+          providers_regex_syntax_allowlist = {},
+          under_cursor = true,
+        })
+      end,
+    },
     "j-hui/fidget.nvim",
-    "lvimuser/lsp-inlayhints.nvim",
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "ray-x/go.nvim",
 
@@ -215,10 +248,15 @@ require("lazy").setup({
     "tom-anders/telescope-vim-bookmarks.nvim",
     "mickael-menu/zk-nvim",
     {
+      "vhyrro/luarocks.nvim",
+      priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+      config = true,
+    },    
+    {
       "nvim-neorg/neorg",
-      opts = function()
-        return require("nvim.neorg")
-      end,
+      lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+      version = "*", -- Pin Neorg to the latest stable release
+      config = true,
     },
 
     -- Colors and Themes
@@ -331,6 +369,18 @@ require("lazy").setup({
       build = "./install.sh",
       dependencies = "hrsh7th/nvim-cmp",
       event = "InsertEnter",
+    },
+
+    -- LSP
+    "neovim/nvim-lspconfig",
+    "williamboman/nvim-lsp-installer",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    {
+      "nvimtools/none-ls.nvim",
+      dependencies = {
+        "nvimtools/none-ls-extras.nvim",
+      },
     },
   },
 
