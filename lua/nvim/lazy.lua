@@ -260,16 +260,47 @@ require("lazy").setup({
     "tom-anders/telescope-vim-bookmarks.nvim",
     "mickael-menu/zk-nvim",
     {
+      "nvim-neorg/lua-utils.nvim",
+      lazy = false,
+    },
+    {
+      "MunifTanjim/nui.nvim",
+      lazy = false,
+    },
+    {
+      "pysan3/pathlib.nvim",
+      lazy = false,
+    },
+    {
       "vhyrro/luarocks.nvim",
       priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
-      config = true,
+      lazy = false,
+      opts = {
+        rocks = { "lua-utils" } -- Explicitly request lua-utils package
+      }
     },
-    -- {
-    --   "nvim-neorg/neorg",
-    --   lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    --   version = "*", -- Pin Neorg to the latest stable release
-    --   config = true,
-    -- },
+    { "nvim-neotest/nvim-nio" },
+    {
+      "nvim-neorg/neorg",
+      lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+      version = "*", -- Pin Neorg to the latest stable release
+      dependencies = {
+        "vhyrro/luarocks.nvim",
+        "nvim-neorg/lua-utils.nvim",
+        "MunifTanjim/nui.nvim",
+        "pysan3/pathlib.nvim", 
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        {
+          "nvim-neorg/neorg-telescope",
+          dependencies = "nvim-telescope/telescope.nvim",
+        },
+      },
+      opts = function()
+        return require("nvim.neorg")
+      end,
+      build = ":Neorg sync-parsers",
+    },
 
     -- Colors and Themes
     "NvChad/nvim-colorizer.lua",
@@ -413,4 +444,3 @@ require("lazy").setup({
     },
   },
 })
-
