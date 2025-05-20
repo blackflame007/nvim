@@ -11,13 +11,20 @@ vim.api.nvim_set_hl(0, 'GitSignsDelete', { link = 'GitSignsDelete' })
 vim.api.nvim_set_hl(0, 'GitSignsDeleteNr', { link = 'GitSignsDeleteNr' })
 vim.api.nvim_set_hl(0, 'GitSignsDeleteLn', { link = 'GitSignsDeleteLn' })
 
+-- Ensure that required modules are loaded
+vim.schedule(function()
+  -- Make sure plenary is loaded first
+  pcall(require, 'plenary')
+end)
+
 return {
     signs = {
         add = { text = "▎" },
         change = { text = "▎" },
         delete = { text = "契" },
         topdelete = { text = "契" },
-        changedelete = { text = "▎" }
+        changedelete = { text = "▎" },
+        untracked = { text = "▎" }
     },
     signcolumn = true,
     numhl = false,
@@ -36,11 +43,34 @@ return {
     update_debounce = 100,
     status_formatter = nil,
     max_file_length = 40000,
+    -- Add on_attach function for keymaps
+    on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+        end
+        -- Navigation
+        map("n", "]c", function()
+            if vim.wo.diff then return "]c" end
+            vim.schedule(function() gs.next_hunk() end)
+            return "<Ignore>"
+        end, { expr = true })
+        map("n", "[c", function()
+            if vim.wo.diff then return "[c" end
+            vim.schedule(function() gs.prev_hunk() end)
+            return "<Ignore>"
+        end, { expr = true })
+    end,
     preview_config = {
         border = "rounded",
         style = "minimal",
         relative = "cursor",
         row = 0,
         col = 1
+    },
+    diff_opts = {
+        internal = true,
     }
 }

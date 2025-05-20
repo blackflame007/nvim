@@ -36,9 +36,9 @@ require("lazy").setup({
     "jose-elias-alvarez/null-ls.nvim",
     "ray-x/lsp_signature.nvim",
     "SmiteshP/nvim-navic",
-    "simrat39/symbols-outline.nvim",
+    "blackflame007/symbols-outline.nvim",
     "b0o/SchemaStore.nvim",
-    { "github/copilot.vim", lazy = false },
+    { "github/copilot.vim",   lazy = false },
     {
       "RRethy/vim-illuminate",
       event = { "BufReadPost", "BufNewFile" },
@@ -292,7 +292,7 @@ require("lazy").setup({
         "vhyrro/luarocks.nvim",
         "nvim-neorg/lua-utils.nvim",
         "MunifTanjim/nui.nvim",
-        "pysan3/pathlib.nvim", 
+        "pysan3/pathlib.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
         {
@@ -360,36 +360,12 @@ require("lazy").setup({
     {
       "lewis6991/gitsigns.nvim",
       event = { "BufReadPre", "BufNewFile" },
-      dependencies = { "nvim-lua/plenary.nvim" },
-      opts = {
-        signs = {
-          add = { text = "▎" },
-          change = { text = "▎" },
-          delete = { text = "▎" },
-          topdelete = { text = "▎" },
-          changedelete = { text = "▎" },
-          untracked = { text = "▎" },
-        },
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-          -- Navigation
-          map("n", "]c", function()
-            if vim.wo.diff then return "]c" end
-            vim.schedule(function() gs.next_hunk() end)
-            return "<Ignore>"
-          end, { expr = true })
-          map("n", "[c", function()
-            if vim.wo.diff then return "[c" end
-            vim.schedule(function() gs.prev_hunk() end)
-            return "<Ignore>"
-          end, { expr = true })
-        end,
+      dependencies = { 
+        "nvim-lua/plenary.nvim",
       },
+      opts = function()
+        return require("nvim.gitsigns")
+      end,
     },
     "f-person/git-blame.nvim",
     "ruifm/gitlinker.nvim",

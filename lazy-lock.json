@@ -79,7 +79,7 @@
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "1b212c2eee76d787bbea6aa5e92a2b534e7b4f8f" },
   "nvim-ts-rainbow": { "branch": "master", "commit": "ef95c15a935f97c65a80e48e12fe72d49aacf9b9" },
   "nvim-web-devicons": { "branch": "master", "commit": "1fb58cca9aebbc4fd32b086cb413548ce132c127" },
-  "octo.nvim": { "branch": "master", "commit": "a1610b4b66a49788c1fd2ff4b8878861df2fc4f1" },
+  "octo.nvim": { "branch": "master", "commit": "e122af3c5cc34054f9f9f6c1bdc004c6109193ff" },
   "onedarker.nvim": { "branch": "master", "commit": "b4f92f073ed7cdf0358ad005cee0484411232b1b" },
   "pathlib.nvim": { "branch": "main", "commit": "57e5598af6fe253761c1b48e0b59b7cd6699e2c1" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
@@ -89,7 +89,7 @@
   "registers.nvim": { "branch": "main", "commit": "c217f8f369e0886776cda6c94eab839b30a8940d" },
   "rust-tools.nvim": { "branch": "modularize_and_inlay_rewrite", "commit": "045ad793aeae0d323f8b78ce2beaae7038e6ea71" },
   "session-lens": { "branch": "main", "commit": "eae46b472b3150f5ec0f977556e8085683d49eb0" },
-  "symbols-outline.nvim": { "branch": "master", "commit": "564ee65dfc9024bdde73a6621820866987cbb256" },
+  "symbols-outline.nvim": { "branch": "master", "commit": "ddff71e2384a9ed7b88d70e84790b8c3eb5dd545" },
   "tabout.nvim": { "branch": "master", "commit": "9a3499480a8e53dcaa665e2836f287e3b7764009" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
   "telescope-media-files.nvim": { "branch": "master", "commit": "0826c7a730bc4d36068f7c85cf4c5b3fd9fb570a" },
@@ -109,5 +109,5 @@
   "webapi-vim": { "branch": "master", "commit": "70c49ada7827d3545a65cbdab04c5c89a3a8464e" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "zen-mode.nvim": { "branch": "main", "commit": "863f150ca321b3dd8aa1a2b69b5f411a220e144f" },
-  "zk-nvim": { "branch": "main", "commit": "fd1ab2239ed85ca51051c094a49a280f4ed76bb2" }
+  "zk-nvim": { "branch": "main", "commit": "4607d3b26b6be9897c9558c78c3cefd2f77c86ab" }
 }
