@@ -1,6 +1,5 @@
 require "nvim.hot-reload"
 require "nvim.options"
--- require "nvim.plugins"
 require "nvim.lazy"
 require "nvim.autocommands"
 require "nvim.keymaps"
