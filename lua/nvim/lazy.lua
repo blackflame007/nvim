@@ -88,7 +88,11 @@ require("lazy").setup({
       end,
       event = { "CmdlineEnter" },
       ft = { "go", 'gomod' },
-      build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+      build = function()
+        -- Ensure config is initialized before running the installer
+        require("go").setup({})
+        require("go.install").update_all_sync()
+      end
     },
     -- Debugging
     {
@@ -353,7 +357,40 @@ require("lazy").setup({
     "is0n/jaq-nvim",
 
     -- Git Integration
-    "lewis6991/gitsigns.nvim",
+    {
+      "lewis6991/gitsigns.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      dependencies = { "nvim-lua/plenary.nvim" },
+      opts = {
+        signs = {
+          add = { text = "▎" },
+          change = { text = "▎" },
+          delete = { text = "▎" },
+          topdelete = { text = "▎" },
+          changedelete = { text = "▎" },
+          untracked = { text = "▎" },
+        },
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+          -- Navigation
+          map("n", "]c", function()
+            if vim.wo.diff then return "]c" end
+            vim.schedule(function() gs.next_hunk() end)
+            return "<Ignore>"
+          end, { expr = true })
+          map("n", "[c", function()
+            if vim.wo.diff then return "[c" end
+            vim.schedule(function() gs.prev_hunk() end)
+            return "<Ignore>"
+          end, { expr = true })
+        end,
+      },
+    },
     "f-person/git-blame.nvim",
     "ruifm/gitlinker.nvim",
     {
