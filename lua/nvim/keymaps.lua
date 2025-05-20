@@ -128,9 +128,9 @@ keymap("n", "<M-CR>", "<Plug>(neorg.esupports.hop.hop-link.vsplit)", opts)
 keymap("n", ">.", "<Plug>(neorg.promo.promote)", opts)
 keymap("n", ">>", "<Plug>(neorg.promo.promote.nested)", opts)
 
--- Visual mode keymaps
-keymap("v", "<", "<Plug>(neorg.promo.demote.range)", opts)
-keymap("v", ">", "<Plug>(neorg.promo.promote.range)", opts)
+-- -- Visual mode keymaps
+-- keymap("v", "<", "<Plug>(neorg.promo.demote.range)", opts)
+-- keymap("v", ">", "<Plug>(neorg.promo.promote.range)", opts)
 
 M.show_documentation = function()
     local filetype = vim.bo.filetype
