@@ -93,7 +93,7 @@ local mappings = {
     desc = "Find files",
   },
   {
-    "<leader>fg", 
+    "<leader>fg",
     "<cmd>Telescope live_grep<cr>",
     desc = "Find Text",
   },
@@ -105,6 +105,13 @@ local mappings = {
   {
     "<leader>/",
     "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>",
+    desc = "Toggle Comment",
+    icon = { icon = icons.ui.Comment, color = "green" },
+  },
+  {
+    mode = { "v" },
+    "<leader>/",
+    "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
     desc = "Toggle Comment",
     icon = { icon = icons.ui.Comment, color = "green" },
   },
@@ -127,7 +134,7 @@ local mappings = {
   },
   {
     "<leader>ps",
-    "<cmd>PackerSync<cr>",
+    "<cmd>Lazy sync<cr>",
     desc = "Sync",
   },
   {
