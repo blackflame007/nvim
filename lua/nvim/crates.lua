@@ -14,8 +14,12 @@ crates.setup {
     min_width = 20,
     padding = 1,
   },
-  null_ls = {
-    enabled = true,
-    name = "crates.nvim",
+  -- Enable completion integration
+  completion = {
+    crates = {
+      enabled = true,
+      max_results = 8,
+      min_chars = 3,
+    },
   },
 }

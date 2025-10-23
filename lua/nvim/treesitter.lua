@@ -16,7 +16,7 @@ require('ts_context_commentstring').setup {
 configs.setup {
   ensure_installed = "all", -- one of "all" or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { "" }, -- List of parsers to ignore installing
+  ignore_install = { "ipkg" }, -- List of parsers to ignore installing (ipkg has broken archive)
   matchup = {
     enable = true, -- mandatory, false will disable the whole extension
     disable_virtual_text = true,

@@ -380,7 +380,7 @@ local lanuage_server = {
 
     -- add client
     for _, client in pairs(clients) do
-      if client.name ~= "copilot" and client.name ~= "null-ls" then
+      if client.name ~= "copilot" and client.name ~= "null-ls" and client.name ~= "none-ls" then
         table.insert(client_names, client.name)
       end
       if client.name == "copilot" then
@@ -389,7 +389,7 @@ local lanuage_server = {
     end
 
     -- add formatter
-    local s = require "null-ls.sources"
+    local s = require "none-ls.sources"
     local available_sources = s.get_available(buf_ft)
     local registered = {}
     for _, source in ipairs(available_sources) do

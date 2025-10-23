@@ -49,19 +49,16 @@ mason_lspconfig.setup {
   automatic_installation = true,
 }
 
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-  return
-end
-
-local opts = {}
+-- Setup base configuration for all LSP servers
+-- Using vim.lsp.config API (Neovim 0.11+) instead of deprecated lspconfig
+local base_config = {
+  on_attach = require("nvim.lsp.handlers").on_attach,
+  capabilities = require("nvim.lsp.handlers").capabilities,
+}
 
 for _, server in pairs(servers) do
-  opts = {
-    on_attach = require("nvim.lsp.handlers").on_attach,
-    capabilities = require("nvim.lsp.handlers").capabilities,
-  }
-
+  local opts = vim.deepcopy(base_config)
+  
   server = vim.split(server, "@")[1]
 
   if server == "jsonls" then
@@ -76,26 +73,20 @@ for _, server in pairs(servers) do
 
   if server == "lua_ls" then
     local l_status_ok, lua_dev = pcall(require, "lua-dev")
-    if not l_status_ok then
-      return
+    if l_status_ok then
+      local luadev = lua_dev.setup {
+        lspconfig = {
+          on_attach = opts.on_attach,
+          capabilities = opts.capabilities,
+        },
+      }
+      opts = vim.tbl_deep_extend("force", opts, luadev)
     end
-    -- local sumneko_opts = require "nvim.lsp.settings.sumneko_lua"
-    -- opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-    -- opts = vim.tbl_deep_extend("force", require("lua-dev").setup(), opts)
-    local luadev = lua_dev.setup {
-      --   -- add any options here, or leave empty to use the default settings
-      -- lspconfig = opts,
-      lspconfig = {
-        on_attach = opts.on_attach,
-        capabilities = opts.capabilities,
-        --   -- settings = opts.settings,
-      },
-    }
-    lspconfig.lua_ls.setup(luadev)
+    vim.lsp.config[server] = opts
     goto continue
   end
 
-  if server == "tsserver" then
+  if server == "tsserver" or server == "ts_ls" then
     local tsserver_opts = require "nvim.lsp.settings.tsserver"
     opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
   end
@@ -130,18 +121,13 @@ for _, server in pairs(servers) do
   end
 
   if server == "rust_analyzer" then
-    local rust_opts = require "nvim.lsp.settings.rust"
-    -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
-    local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
-    if not rust_tools_status_ok then
-      return
-    end
-
-    rust_tools.setup(rust_opts)
+    -- rust_analyzer is configured via rustaceanvim plugin
+    -- which handles setup automatically
     goto continue
   end
 
-  lspconfig[server].setup(opts)
+  -- Use new vim.lsp.config API (Neovim 0.11+)
+  vim.lsp.config[server] = opts
   ::continue::
 end
 

@@ -1,8 +1,4 @@
 M = {}
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
 
 M.server_capabilities = function()
   local active_clients = vim.lsp.get_active_clients()
@@ -30,7 +26,7 @@ require "nvim.lsp.lsp-signature"
 -- require "nvim.lsp.lsp-installer"
 require "nvim.lsp.mason"
 require("nvim.lsp.handlers").setup()
-require "nvim.lsp.null-ls"
+require "nvim.lsp.none-ls"
 
 local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
 if not l_status_ok then

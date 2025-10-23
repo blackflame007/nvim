@@ -33,7 +33,6 @@ require("lazy").setup({
     "williamboman/nvim-lsp-installer",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
     "ray-x/lsp_signature.nvim",
     "SmiteshP/nvim-navic",
     "blackflame007/symbols-outline.nvim",
@@ -106,7 +105,7 @@ require("lazy").setup({
 
     -- Completion
     {
-      "christianchiarulli/nvim-cmp",
+      "hrsh7th/nvim-cmp",
       dependencies = {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -172,9 +171,6 @@ require("lazy").setup({
         "ThePrimeagen/git-worktree.nvim",
       },
       cmd = "Telescope",
-      opts = function()
-        return require("nvim.telescope")
-      end,
     },
     {
       "nvim-treesitter/nvim-treesitter",
@@ -187,17 +183,11 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter-textobjects",
       },
       event = { "BufReadPost", "BufNewFile" },
-      opts = function()
-        return require("nvim.treesitter")
-      end,
     },
 
     {
       "lukas-reineke/indent-blankline.nvim",
       main = "ibl",
-      opts = function()
-        return require("nvim.indentline")
-      end,
     },
 
     {
@@ -283,9 +273,6 @@ require("lazy").setup({
           dependencies = "nvim-telescope/telescope.nvim",
         },
       },
-      opts = function()
-        return require("nvim.neorg")
-      end,
       build = ":Neorg sync-parsers",
     },
 
@@ -346,9 +333,6 @@ require("lazy").setup({
       dependencies = { 
         "nvim-lua/plenary.nvim",
       },
-      opts = function()
-        return require("nvim.gitsigns")
-      end,
     },
     "f-person/git-blame.nvim",
     "ruifm/gitlinker.nvim",
@@ -377,8 +361,10 @@ require("lazy").setup({
     -- Language Specific
     "mfussenegger/nvim-jdtls",
     {
-      "christianchiarulli/rust-tools.nvim",
-      branch = "modularize_and_inlay_rewrite",
+      "mrcjkb/rustaceanvim",
+      version = "^5",
+      lazy = false,
+      ft = { "rust" },
     },
     "Saecki/crates.nvim",
     "jose-elias-alvarez/typescript.nvim",
@@ -410,7 +396,7 @@ require("lazy").setup({
       event = "InsertEnter",
     },
 
-    -- LSP
+    -- LSP and formatting
     "neovim/nvim-lspconfig",
     "williamboman/nvim-lsp-installer",
     "williamboman/mason.nvim",
@@ -419,6 +405,7 @@ require("lazy").setup({
       "nvimtools/none-ls.nvim",
       dependencies = {
         "nvimtools/none-ls-extras.nvim",
+        "nvim-lua/plenary.nvim",
       },
     },
   },

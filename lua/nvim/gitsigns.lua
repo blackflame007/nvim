@@ -1,5 +1,3 @@
-local M = {}
-
 -- Set up highlight groups first
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { link = 'GitSignsAdd' })
 vim.api.nvim_set_hl(0, 'GitSignsAddNr', { link = 'GitSignsAddNr' })
@@ -11,13 +9,7 @@ vim.api.nvim_set_hl(0, 'GitSignsDelete', { link = 'GitSignsDelete' })
 vim.api.nvim_set_hl(0, 'GitSignsDeleteNr', { link = 'GitSignsDeleteNr' })
 vim.api.nvim_set_hl(0, 'GitSignsDeleteLn', { link = 'GitSignsDeleteLn' })
 
--- Ensure that required modules are loaded
-vim.schedule(function()
-  -- Make sure plenary is loaded first
-  pcall(require, 'plenary')
-end)
-
-return {
+require("gitsigns").setup({
     signs = {
         add = { text = "▎" },
         change = { text = "▎" },
@@ -73,4 +65,4 @@ return {
     diff_opts = {
         internal = true,
     }
-}
+})

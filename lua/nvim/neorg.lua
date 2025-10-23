@@ -1,4 +1,4 @@
-return {
+require("neorg").setup({
     load = {
         ["core.defaults"] = {},
         ["core.keybinds"] = {
@@ -42,4 +42,4 @@ return {
         },
         ["core.highlights"] = {},
     },
-}
+})
