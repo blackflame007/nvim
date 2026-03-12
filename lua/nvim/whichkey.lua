@@ -116,21 +116,11 @@ local mappings = {
     icon = { icon = icons.ui.Comment, color = "green" },
   },
 
-  -- Packer group
+  -- Lazy group
   {
     "<leader>p",
-    group = "Packer",
+    group = "Plugins",
     icon = { icon = icons.ui.Package, color = "azure" },
-  },
-  {
-    "<leader>pc",
-    "<cmd>PackerCompile<cr>",
-    desc = "Compile",
-  },
-  {
-    "<leader>pi",
-    "<cmd>PackerInstall<cr>",
-    desc = "Install",
   },
   {
     "<leader>ps",
@@ -139,13 +129,113 @@ local mappings = {
   },
   {
     "<leader>pS",
-    "<cmd>PackerStatus<cr>",
+    "<cmd>Lazy<cr>",
     desc = "Status",
   },
   {
     "<leader>pu",
-    "<cmd>PackerUpdate<cr>",
+    "<cmd>Lazy update<cr>",
     desc = "Update",
+  },
+  {
+    "<leader>pc",
+    "<cmd>Lazy check<cr>",
+    desc = "Check Updates",
+  },
+  {
+    "<leader>pi",
+    "<cmd>Lazy install<cr>",
+    desc = "Install",
+  },
+  {
+    "<leader>pp",
+    "<cmd>Lazy profile<cr>",
+    desc = "Profile",
+  },
+
+  -- OpenCode group
+  {
+    "<leader>o",
+    group = "OpenCode",
+    icon = { icon = icons.misc.Robot, color = "purple" },
+  },
+  {
+    "<leader>oo",
+    function() require("opencode").toggle() end,
+    desc = "Toggle OpenCode",
+    icon = { icon = icons.misc.Robot, color = "purple" },
+  },
+  {
+    "<leader>oa",
+    function() require("opencode").ask("@this: ") end,
+    desc = "Ask",
+  },
+  {
+    mode = { "v" },
+    "<leader>oa",
+    function() require("opencode").ask("@this: ", { submit = true }) end,
+    desc = "Ask (selection)",
+  },
+  {
+    "<leader>os",
+    function() require("opencode").select() end,
+    desc = "Select Action",
+  },
+  {
+    mode = { "v" },
+    "<leader>os",
+    function() require("opencode").select() end,
+    desc = "Select Action",
+  },
+  {
+    "<leader>oe",
+    function() require("opencode").prompt("explain") end,
+    desc = "Explain",
+  },
+  {
+    "<leader>or",
+    function() require("opencode").prompt("review") end,
+    desc = "Review",
+  },
+  {
+    "<leader>of",
+    function() require("opencode").prompt("fix") end,
+    desc = "Fix Diagnostics",
+  },
+  {
+    "<leader>ot",
+    function() require("opencode").prompt("test") end,
+    desc = "Generate Tests",
+  },
+  {
+    "<leader>od",
+    function() require("opencode").prompt("document") end,
+    desc = "Document",
+  },
+  {
+    "<leader>oi",
+    function() require("opencode").prompt("implement") end,
+    desc = "Implement",
+  },
+  {
+    "<leader>op",
+    function() require("opencode").prompt("optimize") end,
+    desc = "Optimize",
+  },
+  {
+    "<leader>on",
+    function() require("opencode").command("session.new") end,
+    desc = "New Session",
+  },
+  {
+    "<leader>ol",
+    function() require("opencode").command("session.list") end,
+    desc = "List Sessions",
+  },
+  {
+    "<leader>oc",
+    function() require("opencode").command("agent.cycle") end,
+    desc = "Cycle Agent",
   },
 
   -- Git group

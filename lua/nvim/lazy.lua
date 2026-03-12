@@ -369,6 +369,12 @@ require("lazy").setup({
     "Saecki/crates.nvim",
     "jose-elias-alvarez/typescript.nvim",
 
+    -- AI Assistant
+    {
+      "nickjvandyke/opencode.nvim",
+      version = "*",
+    },
+
     -- Additional Tools
     "folke/trouble.nvim",
 
@@ -411,7 +417,7 @@ require("lazy").setup({
   },
 
   install = { colorscheme = { "habamax" } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
   performance = {
     rtp = {
       disabled_plugins = {
