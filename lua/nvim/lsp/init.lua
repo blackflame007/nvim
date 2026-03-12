@@ -23,7 +23,6 @@ M.server_capabilities = function()
 end
 
 require "nvim.lsp.lsp-signature"
--- require "nvim.lsp.lsp-installer"
 require "nvim.lsp.mason"
 require("nvim.lsp.handlers").setup()
 require "nvim.lsp.none-ls"

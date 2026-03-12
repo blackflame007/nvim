@@ -37,7 +37,7 @@ require("gitsigns").setup({
     max_file_length = 40000,
     -- Add on_attach function for keymaps
     on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+        local gs = require "gitsigns"
         local function map(mode, l, r, opts)
             opts = opts or {}
             opts.buffer = bufnr
